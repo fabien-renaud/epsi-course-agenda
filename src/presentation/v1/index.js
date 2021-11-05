@@ -1,10 +1,10 @@
 import express from 'express';
 import health from './health';
-import course from './course';
+import courses from './courses';
 
 const router = express.Router();
 
-router.use('/course', course);
+router.use('/courses', courses);
 router.use('/health', health);
 
 export default router;

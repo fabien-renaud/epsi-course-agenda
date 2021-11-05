@@ -1,3 +1,3 @@
-import databaseConfig from './databaseConfig';
+import databaseConfig from './database-config';
 
 export {databaseConfig};
