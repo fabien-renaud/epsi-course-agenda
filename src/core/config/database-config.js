@@ -8,6 +8,7 @@ const databaseConfig = {
     dialectOptions: {
         connectTimeout: 2000
     },
+    logging: false,
     timezone: '+01:00'
 };
 

@@ -5,8 +5,8 @@ const start = async () => {
 
     database
         .sync({force: true})
-        .then(() => console.info('info', 'Connection to database has been initialized'))
-        .catch((err) => console.error('error', `Connection to database has failed: ${err}`));
+        .then(() => console.info('Connection to database has been initialized'))
+        .catch((err) => console.error(`Connection to database has failed: ${err}`));
 };
 
 start().catch((error) => {

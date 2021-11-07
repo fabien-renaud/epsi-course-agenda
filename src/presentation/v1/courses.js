@@ -3,7 +3,7 @@ import {CourseController} from '../../controllers';
 
 const router = express.Router();
 
-router.get('/', (request, response) => {
+router.get('/', (request, response, next) => {
     CourseController.findCourses()
         .then((courses) => {
             if (!courses) response.sendStatus(404);
@@ -11,10 +11,11 @@ router.get('/', (request, response) => {
         })
         .catch((error) => {
             response.status(500).send(error);
-        });
+        })
+        .finally(() => next());
 });
 
-router.get('/:id', (request, response) => {
+router.get('/:id', (request, response, next) => {
     const {id} = request.params;
     CourseController.findCourseById(id)
         .then((course) => {
@@ -23,10 +24,11 @@ router.get('/:id', (request, response) => {
         })
         .catch((error) => {
             response.status(500).send(error);
-        });
+        })
+        .finally(() => next());
 });
 
-router.post('/', (request, response) => {
+router.post('/', (request, response, next) => {
     const course = request.body;
     CourseController.createCourse(course)
         .then(() => {
@@ -34,10 +36,11 @@ router.post('/', (request, response) => {
         })
         .catch((error) => {
             response.status(500).send(error);
-        });
+        })
+        .finally(() => next());
 });
 
-router.patch('/:id', (request, response) => {
+router.patch('/:id', (request, response, next) => {
     const {id} = request.params;
     const course = request.body;
     CourseController.updateCourse(id, course)
@@ -46,10 +49,11 @@ router.patch('/:id', (request, response) => {
         })
         .catch((error) => {
             response.status(500).send(error);
-        });
+        })
+        .finally(() => next());
 });
 
-router.delete('/:id', (request, response) => {
+router.delete('/:id', (request, response, next) => {
     const {id} = request.params;
     CourseController.updateCourse(id)
         .then(() => {
@@ -57,7 +61,8 @@ router.delete('/:id', (request, response) => {
         })
         .catch((error) => {
             response.status(500).send(error);
-        });
+        })
+        .finally(() => next());
 });
 
 export default router;
